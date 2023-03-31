@@ -19,7 +19,8 @@ request(URL, function(error, response, body) {
                 const currentPlayer = $(e2).find("th:nth-child(3) > a").text()
 
                 // Current date is already found in e3
-                const currentDate = $(e3).text()
+                // substr(5,5) removes the year from date. Remove that if we want year to be considered as well.
+                const currentDate = $(e3).text().substr(5,5)
 
                 playerDataMap[currentCountry] = playerDataMap[currentCountry] || []
                 playerDataMap[currentCountry].push({
@@ -51,6 +52,8 @@ request(URL, function(error, response, body) {
         }
     }
 
+    // 19/32 for mm-dd
+    // 3/32 for yyyy-mm-dd
     console.log(count + " countries out of " + Object.keys(playerDataMap).length  + " have at least 2 players who share the same birthday.")
 });
 
